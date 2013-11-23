@@ -494,25 +494,25 @@ public class GamePanel extends JPanel implements Runnable {
         for (int i=0; i<4; i++){
             
             if (t instanceof TetraI){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-28+658, t.getTetramino()[i].getY()+3+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-28+658, t.getTetramino()[i].getY()+3+86, this);
             }
             else if (t instanceof TetraO) {
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-30+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-30+658, t.getTetramino()[i].getY()+4+86, this);
             }
             else if (t instanceof TetraT){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
             }
             else if (t instanceof TetraZ){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
             }
             else if (t instanceof TetraS){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-20+658, t.getTetramino()[i].getY()+4+86, this);
             }
             else if (t instanceof TetraL){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-18+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-18+658, t.getTetramino()[i].getY()+4+86, this);
             }
             else if (t instanceof TetraJ){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX()-18+658, t.getTetramino()[i].getY()+4+86, this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()-18+658, t.getTetramino()[i].getY()+4+86, this);
             }
         }
         
@@ -559,6 +559,25 @@ public class GamePanel extends JPanel implements Runnable {
         
         g.drawImage(offscreen, 0, 0, this);
     }//paint
+    
+    public Image getImage(Quadrato q, int i){
+        if(q.getImageSelected() == Quadrato.ImageColour.BLUE){
+            return this.getTetraBoard().getBlue(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.ORANGE){
+            return this.getTetraBoard().getOrange(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.GREEN){
+            return this.getTetraBoard().getGreen(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.CYAN){
+            return this.getTetraBoard().getCyan(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.YELLOW){
+            return this.getTetraBoard().getYellow(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.PURPLE){
+            return this.getTetraBoard().getPurple(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.RED){
+            return this.getTetraBoard().getRed(i);
+        }
+        throw new IllegalArgumentException("Image colur not found");
+    }
     
     @Override
     public void run() {

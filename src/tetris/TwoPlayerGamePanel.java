@@ -719,9 +719,9 @@ public class TwoPlayerGamePanel extends JPanel implements Runnable{
         
         for (int i=0; i<4; i++){
             
-            bufferedGraphics.drawImage(t.getTetramino()[i].getImage(),t.getTetramino()[i].getX()+22, t.getTetramino()[i].getY()+89, this);
+            bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 0), t.getTetramino()[i].getX()+22, t.getTetramino()[i].getY()+89, this);
             
-            bufferedGraphics.drawImage(t2.getTetramino()[i].getImage(), t2.getTetramino()[i].getX()+588, t2.getTetramino()[i].getY()+89, this);
+            bufferedGraphics.drawImage(this.getImage(t2.getTetramino()[i], 0), t2.getTetramino()[i].getX()+588, t2.getTetramino()[i].getY()+89, this);
         }
         
         /*Font infoFont= new Font("OCR A Std", Font.BOLD, 18);*/
@@ -788,6 +788,25 @@ public class TwoPlayerGamePanel extends JPanel implements Runnable{
         
         g.drawImage(offscreen, 0, 0, this);
     }//paintComponent
+    
+    public Image getImage(Quadrato q, int i){
+        if(q.getImageSelected() == Quadrato.ImageColour.BLUE){
+            return this.tetraBoardOne.getBlue(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.ORANGE){
+            return this.tetraBoardOne.getOrange(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.GREEN){
+            return this.tetraBoardOne.getGreen(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.CYAN){
+            return this.tetraBoardOne.getCyan(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.YELLOW){
+            return this.tetraBoardOne.getYellow(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.PURPLE){
+            return this.tetraBoardOne.getPurple(i);
+        } else if(q.getImageSelected() == Quadrato.ImageColour.RED){
+            return this.tetraBoardOne.getRed(i);
+        }
+        throw new IllegalArgumentException("Image colur not found");
+    }
             
             
     @Override

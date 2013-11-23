@@ -26,6 +26,7 @@ import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import tetris.Quadrato.ImageColour;
 
 /**
  *
@@ -39,6 +40,9 @@ public class TetrisBoard extends JPanel implements Runnable{
     private Quadrato[][] tetraMatrix;
     private Graphics bufferedGraphics;
     private Image offscreen, gameOverImage;
+    private Image ghost;
+    private Image yellow[], blue[], cyan[], green[], orange[], purple[], red[];//la prima è la nomale, la seconda è la
+    //grey, la terza è l'invertita
     private InputMap inputmap;
     private ActionMap actionmap;
     private String keyPressed;
@@ -98,6 +102,118 @@ public class TetrisBoard extends JPanel implements Runnable{
         actionmap.put("space", new TetrisBoardActionController(tgl, "space"));
         actionmap.put("pause", new TetrisBoardActionController(tgl, "pause"));*/  
     }
+
+    public Image getGhost() {
+        if (ghost == null){
+            ghost = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GhostT.png"));
+        }
+        return ghost;
+    }
+
+    public void setGhost(Image ghost) {
+        this.ghost = ghost;
+    }
+
+    public Image getYellow(int i) {
+        if (yellow == null){
+            yellow = new Image[3];
+            yellow[0]= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/YellowT.png"));
+            yellow[1] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/YellowTGrey.png"));
+            yellow[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/YellowTInverted.png"));
+        }
+        return yellow[i];
+    }
+
+    public void setYellow(Image[] yellow) {
+        this.yellow = yellow;
+    }
+
+    public Image getBlue(int i) {
+        if(blue == null){
+            blue = new Image[3];
+            blue[0] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/BlueT.png"));
+            blue[1] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/BlueTGrey.png"));
+            blue[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/BlueTInverted.png"));
+        }
+        return blue[i];
+    }
+
+    public void setBlue(Image[] blue) {
+        this.blue = blue;
+    }
+
+    public Image getCyan(int i) {
+        if (cyan == null){
+            cyan = new Image[3];
+            cyan[0] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/CyanT.png"));
+            cyan[1] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/CyanTGrey.png"));
+            cyan[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/CyanTInverted.png"));
+        }
+        
+        return cyan[i];
+    }
+
+    public void setCyan(Image[] cyan) {
+        this.cyan = cyan;
+    }
+
+    public Image getGreen(int i) {
+        if (green == null){
+            green = new Image[3];
+            green[0]= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenT.png"));
+            green[1]=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/GreenTGrey.png"));
+            green[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenTInverted.png"));
+        }
+        return green[i];
+    }
+
+    public void setGreen(Image[] green) {
+        this.green = green;
+    }
+
+    public Image getOrange(int i) {
+        if (orange == null){
+            orange = new Image[3];
+            orange[0]= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeT.png"));
+            orange[1]=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/OrangeTGrey.png"));
+            orange[2]= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeTInverted.png"));
+        }
+        return orange[i];
+    }
+
+    public void setOrange(Image[] orange) {
+        this.orange = orange;
+    }
+
+    public Image getPurple(int i) {
+        if (purple == null){
+            purple = new Image[3];
+            purple[0] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/PurpleT.png"));
+            purple[1] =Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/PurpleTGrey.png"));
+            purple[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/PurpleTInverted.png"));
+        }
+        return purple[i];
+    }
+
+    public void setPurple(Image[] purple) {
+        this.purple = purple;
+    }
+
+    public Image getRed(int i) {
+        if(red == null) {
+            red = new Image[3];
+            red[0] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/RedT.png"));
+            red[1] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/RedTGrey.png"));
+            red[2] = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/RedTInverted.png"));
+        }
+        return red[i];
+    }
+
+    public void setRed(Image[] red) {
+        this.red = red;
+    }
+    
+    
     
     public void setKeyPressed(String keyPressed){
         this.keyPressed=keyPressed;
@@ -125,10 +241,7 @@ public class TetrisBoard extends JPanel implements Runnable{
         bufferedGraphics.clearRect(0, 0, 200, 400);
         bufferedGraphics.setColor(Color.BLACK);
         bufferedGraphics.fillRect(0, 0, 400, 400);
-    	//Graphics2D g2d= (Graphics2D)bufferedGraphics;
         
-        //Image invertedImage = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/CyanTInverted.png"));
-        //bufferedGraphics.drawImage(invertedImage, 30, 40, this);
         if(tgl.isGameOver()){
             bufferedGraphics.drawImage(gameOverImage, 0, 180, this);
             g.drawImage(offscreen, 0, 0, this);
@@ -141,14 +254,15 @@ public class TetrisBoard extends JPanel implements Runnable{
         if (!hideGhost){
             for (int i=0; i<4; i++){
                 if(tgl.getTetraGhost()!=null && !t.isNotMoving()) {
-                    bufferedGraphics.drawImage(tgl.getTetraGhost().getTetramino()[i].getImage(), tgl.getTetraGhost().getTetramino()[i].getX(), tgl.getTetraGhost().getTetramino()[i].getY(), this);
+                    bufferedGraphics.drawImage(this.getGhost(), tgl.getTetraGhost().getTetramino()[i].getX(), tgl.getTetraGhost().getTetramino()[i].getY(), this);
                 }
             }
         }
         
         for (int i=0; i<t.getTetramino().length; i++){
             if (!t.isNotMoving()){
-                bufferedGraphics.drawImage(t.getTetramino()[i].getGreyImage(), t.getTetramino()[i].getX(), t.getTetramino()[i].getY(), this);
+                //bufferedGraphics.drawImage(t.getTetramino()[i].getGreyImage(), t.getTetramino()[i].getX(), t.getTetramino()[i].getY(), this);
+                bufferedGraphics.drawImage(this.getImage(t.getTetramino()[i], 1), t.getTetramino()[i].getX(), t.getTetramino()[i].getY(), this);
                 //System.out.println(t.isNotMoving());
             }
             //g2d.drawImage(t.getTetramino()[i].getImage(), t.getTetramino()[i].getX(), t.getTetramino()[i].getY(), this);
@@ -159,9 +273,11 @@ public class TetrisBoard extends JPanel implements Runnable{
                 if (tetraMatrix[i][j].isVisible()){
                     //bufferedGraphics.drawImage(tetraMatrix[i][j].getGreyImage(), tetraMatrix[i][j].getX(), tetraMatrix[i][j].getY(), this);
                     if(tetraMatrix[i][j].useInvertedImage()){
-                        bufferedGraphics.drawImage(tetraMatrix[i][j].getInvertedImage(), j*20, i*20, this);
+                        //bufferedGraphics.drawImage(tetraMatrix[i][j].getInvertedImage(), j*20, i*20, this);
+                        bufferedGraphics.drawImage(this.getImage(tetraMatrix[i][j], 2), j*20, i*20, this);
                     } else {
-                        bufferedGraphics.drawImage(tetraMatrix[i][j].getImage(), j*20, i*20, this);
+                        //bufferedGraphics.drawImage(tetraMatrix[i][j].getImage(), j*20, i*20, this);
+                        bufferedGraphics.drawImage(this.getImage(tetraMatrix[i][j], 0), j*20, i*20, this);
                     }
                     
                     //System.out.println("a:"+i+" b:"+j+" x:"+tetraMatrix[i][j].getX()+" y:"+tetraMatrix[i][j].getY()+" visible:"+tetraMatrix[i][j].isVisible());
@@ -171,6 +287,25 @@ public class TetrisBoard extends JPanel implements Runnable{
         }
         g.drawImage(offscreen, 0, 0, this);
     }//paint
+    
+    public Image getImage(Quadrato q, int i){
+        if(q.getImageSelected() == ImageColour.BLUE){
+            return this.getBlue(i);
+        } else if(q.getImageSelected() == ImageColour.ORANGE){
+            return this.getOrange(i);
+        } else if(q.getImageSelected() == ImageColour.GREEN){
+            return this.getGreen(i);
+        } else if(q.getImageSelected() == ImageColour.CYAN){
+            return this.getCyan(i);
+        } else if(q.getImageSelected() == ImageColour.YELLOW){
+            return this.getYellow(i);
+        } else if(q.getImageSelected() == ImageColour.PURPLE){
+            return this.getPurple(i);
+        } else if(q.getImageSelected() == ImageColour.RED){
+            return this.getRed(i);
+        }
+        throw new IllegalArgumentException("Image colur not found");
+    }
     
     @Override
     public void addNotify() {

@@ -490,8 +490,7 @@ public class TetrisPanelsController implements ActionListener {
         else if (command.equals("resumeMarathon")){
             if (playerMode == PLAYER_MODE.SINGLE_PLAYER){
                 TetrisGameLogic tgl= loadGameLogic("data/single_player_marathon.game");
-                tgl.loadImages();
-                
+                                
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();
             
@@ -504,8 +503,6 @@ public class TetrisPanelsController implements ActionListener {
                 TetrisGameLogic [] tglArray= loadGameLogics("data/two_players_marathon.game");
                 TetrisGameLogic tgl1= tglArray[0];
                 TetrisGameLogic tgl2= tglArray[1];
-                tgl1.loadImages();
-                tgl2.loadImages();
                 
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();
@@ -526,7 +523,6 @@ public class TetrisPanelsController implements ActionListener {
         else if (command.equals("resumeSprint")){
             if (playerMode == PLAYER_MODE.SINGLE_PLAYER){
                 TetrisGameLogic tgl= loadGameLogic("data/single_player_sprint.game");
-                tgl.loadImages();
                 
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();
@@ -540,8 +536,6 @@ public class TetrisPanelsController implements ActionListener {
                 TetrisGameLogic [] tglArray= loadGameLogics("data/two_players_sprint.game");
                 TetrisGameLogic tgl1= tglArray[0];
                 TetrisGameLogic tgl2= tglArray[1];
-                tgl1.loadImages();
-                tgl2.loadImages();
                 
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();
@@ -562,7 +556,6 @@ public class TetrisPanelsController implements ActionListener {
         else if (command.equals("resumeUltra")){
             if (playerMode == PLAYER_MODE.SINGLE_PLAYER){
                 TetrisGameLogic tgl= loadGameLogic("data/single_player_ultra.game");
-                tgl.loadImages();
                 
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();
@@ -576,8 +569,6 @@ public class TetrisPanelsController implements ActionListener {
                 TetrisGameLogic [] tglArray= loadGameLogics("data/two_players_ultra.game");
                 TetrisGameLogic tgl1= tglArray[0];
                 TetrisGameLogic tgl2= tglArray[1];
-                tgl1.loadImages();
-                tgl2.loadImages();
                 
                 tetrisFrame.getContentPane().removeAll();
                 tetrisFrame.getContentPane().invalidate();

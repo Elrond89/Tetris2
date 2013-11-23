@@ -7,6 +7,7 @@ package tetris;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.Serializable;
+import tetris.Quadrato.ImageColour;
 
 /**
  *
@@ -14,18 +15,14 @@ import java.io.Serializable;
  */
 public class TetraL implements Tetramino, Serializable{
     private Quadrato[] tetraArray= new Quadrato[4];
-    private transient Image image= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeT.png")),
-            greyImage=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/OrangeTGrey.png")),
-            invertedImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeTInverted.png"));
-    private transient Image ghostImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GhostT.png"));
     private int x_centre, y_centre;
     private boolean fermo;
     
     public TetraL(){
-        tetraArray[0]= new Quadrato(60, 0, image, "/tetris/images/OrangeT.png", greyImage, "/tetris/images/greyImages/OrangeTGrey.png", invertedImage, "/tetris/images/OrangeTInverted.png");
-        tetraArray[1]= new Quadrato(80, 0, image, "/tetris/images/OrangeT.png", greyImage, "/tetris/images/greyImages/OrangeTGrey.png", invertedImage, "/tetris/images/OrangeTInverted.png");
-        tetraArray[2]= new Quadrato(100, 0, image, "/tetris/images/OrangeT.png", greyImage, "/tetris/images/greyImages/OrangeTGrey.png", invertedImage, "/tetris/images/OrangeTInverted.png");
-        tetraArray[3]= new Quadrato(60, 20, image, "/tetris/images/OrangeT.png", greyImage, "/tetris/images/greyImages/OrangeTGrey.png", invertedImage, "/tetris/images/OrangeTInverted.png");
+        tetraArray[0]= new Quadrato(60, 0, ImageColour.ORANGE);
+        tetraArray[1]= new Quadrato(80, 0, ImageColour.ORANGE);
+        tetraArray[2]= new Quadrato(100, 0, ImageColour.ORANGE);
+        tetraArray[3]= new Quadrato(60, 20, ImageColour.ORANGE);
         x_centre=80;
         y_centre=0;
     }
@@ -55,7 +52,7 @@ public class TetraL implements Tetramino, Serializable{
         Tetramino t= new TetraI();
         Quadrato [] qu= new Quadrato[4];
         for(int i=0; i<4; i++){
-            Quadrato q= new Quadrato(tetraArray[i].getX(), tetraArray[i].getY(), ghostImage, "/tetris/images/GhostT.png");
+            Quadrato q= new Quadrato(tetraArray[i].getX(), tetraArray[i].getY(), ImageColour.ORANGE);
             qu[i]=q;
         }
         t.setTetramino(qu);
@@ -135,13 +132,5 @@ public class TetraL implements Tetramino, Serializable{
         }
         x_centre=tetraArray[1].getX();
         y_centre=tetraArray[1].getY();
-    }
-
-    @Override
-    public void loadImages() {
-        image= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeT.png"));
-        greyImage=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/OrangeTGrey.png"));
-        invertedImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/OrangeTInverted.png"));
-        ghostImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GhostT.png"));
     }
 }

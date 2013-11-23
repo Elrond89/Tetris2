@@ -7,6 +7,7 @@ package tetris;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.Serializable;
+import tetris.Quadrato.ImageColour;
 
 /**
  *
@@ -15,10 +16,6 @@ import java.io.Serializable;
 public class TetraS implements Tetramino, Serializable {
     
     private Quadrato[] tetraArray= new Quadrato[4];
-    private transient Image image= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenT.png")),
-            greyImage=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/GreenTGrey.png")), 
-            invertedImage = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenTInverted.png"));
-    private transient Image ghostImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GhostT.png"));
     private boolean fermo;
     private int x_centre, y_centre;
     private enum DIRECTION {EAST, WEST, NORTH, SOUTH} //In realta' le direzioni sarebbero solo 2 visto che si alternano 
@@ -26,10 +23,10 @@ public class TetraS implements Tetramino, Serializable {
     private DIRECTION dir;
     
     public TetraS(){
-        tetraArray[0]= new Quadrato(80, 0, image, "/tetris/images/GreenT.png", greyImage,"/tetris/images/greyImages/GreenTGrey.png", invertedImage, "/tetris/images/GreenTInverted.png");
-        tetraArray[1]= new Quadrato(100, 0, image, "/tetris/images/GreenT.png", greyImage,"/tetris/images/greyImages/GreenTGrey.png", invertedImage, "/tetris/images/GreenTInverted.png");
-        tetraArray[2]= new Quadrato(60, 20, image, "/tetris/images/GreenT.png", greyImage,"/tetris/images/greyImages/GreenTGrey.png", invertedImage, "/tetris/images/GreenTInverted.png");
-        tetraArray[3]= new Quadrato(80, 20, image, "/tetris/images/GreenT.png", greyImage,"/tetris/images/greyImages/GreenTGrey.png", invertedImage, "/tetris/images/GreenTInverted.png");
+        tetraArray[0]= new Quadrato(80, 0, ImageColour.GREEN);
+        tetraArray[1]= new Quadrato(100, 0, ImageColour.GREEN);
+        tetraArray[2]= new Quadrato(60, 20, ImageColour.GREEN);
+        tetraArray[3]= new Quadrato(80, 20, ImageColour.GREEN);
         x_centre=80;
         y_centre=20;
         dir= DIRECTION.EAST;
@@ -60,7 +57,7 @@ public class TetraS implements Tetramino, Serializable {
         Tetramino t= new TetraI();
         Quadrato [] qu= new Quadrato[4];
         for(int i=0; i<4; i++){
-            Quadrato q= new Quadrato(tetraArray[i].getX(), tetraArray[i].getY(), ghostImage, "/tetris/images/GhostT.png");
+            Quadrato q= new Quadrato(tetraArray[i].getX(), tetraArray[i].getY(), ImageColour.GREEN);
             qu[i]=q;
         }
         t.setTetramino(qu);
@@ -177,13 +174,5 @@ public class TetraS implements Tetramino, Serializable {
                  x_centre=tetraArray[0].getX();
                  y_centre=tetraArray[0].getY();
             }
-    }
-    
-    @Override
-    public void loadImages() {
-        image= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenT.png"));
-        greyImage=Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/greyImages/GreenTGrey.png"));
-        invertedImage = Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GreenTInverted.png"));
-        ghostImage= Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/tetris/images/GhostT.png"));
     }
 }

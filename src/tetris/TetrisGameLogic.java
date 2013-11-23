@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import tetris.Quadrato.ImageColour;
 
 /**
  *
@@ -182,7 +183,7 @@ public class TetrisGameLogic implements Serializable {
     private void initTetraMatrix() {
         for (int i = 0; i < tetraMatrix.length; i++) {
             for (int j = 0; j < tetraMatrix[i].length; j++) {
-                Quadrato q = new Quadrato(0, 0, null);
+                Quadrato q = new Quadrato(0, 0, ImageColour.BLUE);
                 q.setVisible(false);
                 tetraMatrix[i][j] = q;
             }
@@ -195,12 +196,7 @@ public class TetrisGameLogic implements Serializable {
             int b = t.getTetramino()[i].getY() / 20;
             tetraMatrix[b][a].setX(a * 20);
             tetraMatrix[b][a].setY(b * 20);
-            tetraMatrix[b][a].setImage(t.getTetramino()[i].getImage());
-            tetraMatrix[b][a].setImagePath(t.getTetramino()[i].getImagePath());
-            tetraMatrix[b][a].setGreyImage(t.getTetramino()[i].getGreyImage());
-            tetraMatrix[b][a].setGreyImagePath(t.getTetramino()[i].getGreyImagePath());
-            tetraMatrix[b][a].setInvertedImage(t.getTetramino()[i].getInvertedImage());
-            tetraMatrix[b][a].setInvertedImagePath(t.getTetramino()[i].getInvertedImagePath());
+            tetraMatrix[b][a].setImageSelected(t.getTetramino()[i].getImageSelected());
             tetraMatrix[b][a].setVisible(true);
         }
     }
@@ -418,54 +414,34 @@ public class TetrisGameLogic implements Serializable {
     private void clearMatrixFromLine(int line) {
         for (int i = line; i > 1; i--) {
             tetraMatrix[i][0].setVisible(tetraMatrix[i - 1][0].isVisible());
-            tetraMatrix[i][0].setImage(tetraMatrix[i - 1][0].getImage());
-            tetraMatrix[i][0].setGreyImage(tetraMatrix[i - 1][0].getGreyImage());
-            tetraMatrix[i][0].setInvertedImage(tetraMatrix[i - 1][0].getInvertedImage());
+            tetraMatrix[i][0].setImageSelected(tetraMatrix[i - 1][0].getImageSelected());
 
             tetraMatrix[i][1].setVisible(tetraMatrix[i - 1][1].isVisible());
-            tetraMatrix[i][1].setImage(tetraMatrix[i - 1][1].getImage());
-            tetraMatrix[i][1].setGreyImage(tetraMatrix[i - 1][1].getGreyImage());
-            tetraMatrix[i][1].setInvertedImage(tetraMatrix[i - 1][1].getInvertedImage());
+            tetraMatrix[i][1].setImageSelected(tetraMatrix[i - 1][1].getImageSelected());
 
             tetraMatrix[i][2].setVisible(tetraMatrix[i - 1][2].isVisible());
-            tetraMatrix[i][2].setImage(tetraMatrix[i - 1][2].getImage());
-            tetraMatrix[i][2].setGreyImage(tetraMatrix[i - 1][2].getGreyImage());
-            tetraMatrix[i][2].setInvertedImage(tetraMatrix[i - 1][2].getInvertedImage());
+            tetraMatrix[i][2].setImageSelected(tetraMatrix[i - 1][2].getImageSelected());
 
             tetraMatrix[i][3].setVisible(tetraMatrix[i - 1][3].isVisible());
-            tetraMatrix[i][3].setImage(tetraMatrix[i - 1][3].getImage());
-            tetraMatrix[i][3].setGreyImage(tetraMatrix[i - 1][3].getGreyImage());
-            tetraMatrix[i][3].setInvertedImage(tetraMatrix[i - 1][3].getInvertedImage());
+            tetraMatrix[i][3].setImageSelected(tetraMatrix[i - 1][3].getImageSelected());
 
             tetraMatrix[i][4].setVisible(tetraMatrix[i - 1][4].isVisible());
-            tetraMatrix[i][4].setImage(tetraMatrix[i - 1][4].getImage());
-            tetraMatrix[i][4].setGreyImage(tetraMatrix[i - 1][4].getGreyImage());
-            tetraMatrix[i][4].setInvertedImage(tetraMatrix[i - 1][4].getInvertedImage());
+            tetraMatrix[i][4].setImageSelected(tetraMatrix[i - 1][4].getImageSelected());
 
             tetraMatrix[i][5].setVisible(tetraMatrix[i - 1][5].isVisible());
-            tetraMatrix[i][5].setImage(tetraMatrix[i - 1][5].getImage());
-            tetraMatrix[i][5].setGreyImage(tetraMatrix[i - 1][5].getGreyImage());
-            tetraMatrix[i][5].setInvertedImage(tetraMatrix[i - 1][5].getInvertedImage());
+            tetraMatrix[i][5].setImageSelected(tetraMatrix[i - 1][5].getImageSelected());
 
             tetraMatrix[i][6].setVisible(tetraMatrix[i - 1][6].isVisible());
-            tetraMatrix[i][6].setImage(tetraMatrix[i - 1][6].getImage());
-            tetraMatrix[i][6].setGreyImage(tetraMatrix[i - 1][6].getGreyImage());
-            tetraMatrix[i][6].setInvertedImage(tetraMatrix[i - 1][6].getInvertedImage());
+            tetraMatrix[i][6].setImageSelected(tetraMatrix[i - 1][6].getImageSelected());
 
             tetraMatrix[i][7].setVisible(tetraMatrix[i - 1][7].isVisible());
-            tetraMatrix[i][7].setImage(tetraMatrix[i - 1][7].getImage());
-            tetraMatrix[i][7].setGreyImage(tetraMatrix[i - 1][7].getGreyImage());
-            tetraMatrix[i][7].setInvertedImage(tetraMatrix[i - 1][7].getInvertedImage());
+            tetraMatrix[i][7].setImageSelected(tetraMatrix[i - 1][7].getImageSelected());
 
             tetraMatrix[i][8].setVisible(tetraMatrix[i - 1][8].isVisible());
-            tetraMatrix[i][8].setImage(tetraMatrix[i - 1][8].getImage());
-            tetraMatrix[i][8].setGreyImage(tetraMatrix[i - 1][8].getGreyImage());
-            tetraMatrix[i][8].setInvertedImage(tetraMatrix[i - 1][8].getInvertedImage());
+            tetraMatrix[i][8].setImageSelected(tetraMatrix[i - 1][8].getImageSelected());
 
             tetraMatrix[i][9].setVisible(tetraMatrix[i - 1][9].isVisible());
-            tetraMatrix[i][9].setImage(tetraMatrix[i - 1][9].getImage());
-            tetraMatrix[i][9].setGreyImage(tetraMatrix[i - 1][9].getGreyImage());
-            tetraMatrix[i][9].setInvertedImage(tetraMatrix[i - 1][9].getInvertedImage());
+            tetraMatrix[i][9].setImageSelected(tetraMatrix[i - 1][9].getImageSelected());
         }
         tetraMatrix[0][0].setVisible(false);
         tetraMatrix[0][1].setVisible(false);
@@ -982,35 +958,6 @@ public class TetrisGameLogic implements Serializable {
         }
         return false;
     }
-
-    /**
-     * ricarica le immagini dei Quadrati in seguito a un salvataggio
-     */
-    public void loadImages() {
-        t.loadImages();
-        for (int i = 0; i < 4; i++) {
-            t.getTetramino()[i].loadImages();
-        }
-        for (int i = 0; i < 4; i++) {
-            ghost.getTetramino()[i].loadImage();
-        }
-        Tetramino[] tetraArray = new Tetramino[4];
-        tetraQueue.toArray(tetraArray);
-        for (int i = 0; i < 4; i++) {
-            Tetramino tetra = tetraArray[i];
-            tetra.loadImages();
-            for (int j = 0; j < 4; j++) {
-                tetra.getTetramino()[j].loadImages();
-            }
-        }
-        for (int i = 0; i < tetraMatrix.length; i++) {
-            for (int j = 0; j < tetraMatrix[i].length; j++) {
-                if (tetraMatrix[i][j].getImagePath() != null) {
-                    tetraMatrix[i][j].loadImages();
-                }
-            }
-        }
-    }//loadImages
 
     /**
      * stampa a schermo la matrice, il metodo serve a vedere e capire eventuali

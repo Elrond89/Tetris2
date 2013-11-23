@@ -22,5 +22,4 @@ public interface Tetramino {
     public void moveRight();
     public boolean isNotMoving();
     public void stop();
-    public void loadImages();
 }
